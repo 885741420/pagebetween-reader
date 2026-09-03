@@ -57,3 +57,10 @@ msedge.exe --load-extension="E:\制作 gpt\edge-reader"
 打开小说章节后，在阅读器点击“读取 Edge”。扩展会提取当前正文，并在后台预取后两章；阅读器优先使用本地缓存切换章节。同时按住左右箭头会让 Edge 返回目录页（若网站提供目录链接）。
 
 正式扩展包使用 `npm.cmd run pack:edge` 生成，位于 `release/edge-extension/pagebetween-edge-extension-1.2.0.zip`。该 ZIP 用于提交 Microsoft Edge Add-ons；审核通过并从商店安装后，可直接配合现有的普通 Edge 窗口使用。未经商店签名的本地扩展无法由普通 Windows 程序静默安装到 Edge。
+
+## 公开发布地址
+
+- 项目主页：<https://github.com/885741420/pagebetween-reader>
+- 桌面安装包：<https://github.com/885741420/pagebetween-reader/releases/latest>
+- 隐私政策：<https://885741420.github.io/pagebetween-reader/edge-reader/privacy.html>
+- 审核测试目录：<https://885741420.github.io/pagebetween-reader/store-demo/>
