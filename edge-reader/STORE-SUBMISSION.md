@@ -8,8 +8,8 @@
 - 类别：生产力
 - 简短说明：把 Edge 当前小说网页转换为纯文字并发送到本机阅读器，支持章节切换和后两章预取。
 - 支持语言：简体中文
-- 隐私政策：发布 `privacy.html` 后填写公开 HTTPS 地址
-- 支持页面：填写桌面程序下载页或项目主页的公开 HTTPS 地址
+- 隐私政策：`https://885741420.github.io/pagebetween-reader/edge-reader/privacy.html`
+- 支持页面：`https://github.com/885741420/pagebetween-reader/issues`
 
 ## 详细说明
 
@@ -33,15 +33,15 @@
 
 ## 审核员测试步骤
 
-1. 从公开 HTTPS 下载地址安装“页间小说阅读器”桌面程序。
+1. 从发布页下载并安装“页间小说阅读器”桌面程序：`https://github.com/885741420/pagebetween-reader/releases/latest`。
 2. 启动桌面阅读器，确认其本机桥接地址为 `127.0.0.1:17321`。
-3. 使用 Edge 打开一个无需登录、付费或验证码的公开测试小说章节页面。
+3. 使用 Edge 打开无需登录、付费或验证码的公开测试页面：`https://885741420.github.io/pagebetween-reader/store-demo/chapter-1.html`。
 4. 在阅读器中点击“读取 Edge”。
 5. 检查正文以纯文字显示；使用左右箭头切换上一章或下一章。
 6. 同时按住左右箭头，检查是否返回目录链接（测试页面提供目录链接时）。
 7. 在当前章节阅读期间切换下一章，检查预取缓存是否优先生效。
 
-审核测试地址和桌面程序下载地址必须在提交前替换为无需登录的公开 HTTPS 地址。
+审核测试页和隐私政策由本仓库的 GitHub Pages 提供；桌面安装包发布到 GitHub Releases 后，上述下载地址会自动指向最新版本。
 
 ## 商店图片
 

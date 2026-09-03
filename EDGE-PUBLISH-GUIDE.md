@@ -31,8 +31,8 @@ store-demo\
 得到两个地址，例如：
 
 ```text
-隐私政策：https://你的用户名.github.io/仓库名/privacy.html
-测试目录：https://你的用户名.github.io/仓库名/store-demo/
+隐私政策：https://885741420.github.io/pagebetween-reader/edge-reader/privacy.html
+测试目录：https://885741420.github.io/pagebetween-reader/store-demo/
 ```
 
 隐私页使用仓库 Issues 作为公开支持入口，不公开个人邮箱。测试目录是原创内容，不需要登录或付费。
