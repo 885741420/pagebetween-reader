@@ -1,0 +1,61 @@
+{
+  "name": "pagebetween-reader",
+  "version": "1.2.0",
+  "description": "TXT 小说阅读器与公开网页转 TXT 工具",
+  "main": "main.cjs",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "dist": "electron-builder --win nsis",
+    "pack:edge": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/build-edge-extension.ps1",
+    "screenshots:edge": "electron scripts/capture-store-screenshots.cjs"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.pagebetween.localreader",
+    "productName": "页间小说阅读器",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "index.html",
+      "styles.css",
+      "app.js",
+      "main.cjs",
+      "preload.cjs",
+      "novel-downloader.cjs",
+      "edge-reader/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "edge-reader",
+        "to": "edge-reader"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "${productName}-${version}-setup.${ext}"
+    }
+  },
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "ws": "^8.18.0"
+  }
+}

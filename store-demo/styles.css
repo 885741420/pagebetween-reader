@@ -1,0 +1,20 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, "Microsoft YaHei", sans-serif;
+  color: #2f2824;
+  background: #f4efe8;
+}
+
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 20px 64px;
+  line-height: 1.9;
+}
+
+a { color: #9b412e; }
+.chapter-content { white-space: normal; }
+.chapter-content p { margin: 0 0 1.3em; }
+.chapter-nav { display: flex; justify-content: space-between; gap: 16px; margin-top: 32px; }
+.chapter-nav a { padding: 8px 12px; border: 1px solid #cdbeb1; text-decoration: none; }
+.muted { color: #756b63; }

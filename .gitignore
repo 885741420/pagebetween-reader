@@ -1,0 +1,8 @@
+node_modules/
+release/
+.edge-reader-profile/
+.edge-headless-profile/
+.edge-screenshot-profile/
+*.log
+*.tmp
+edge-ad-blocker.zip

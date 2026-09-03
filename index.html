@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f3f1eb" />
+    <title>页间 · 本地小说阅读器</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="paper">
+    <header class="topbar">
+      <div class="brand" aria-label="页间本地小说阅读器">
+        <span class="brand-mark" aria-hidden="true">页</span>
+        <span class="brand-name">页间</span>
+        <span class="brand-meta">LOCAL READER</span>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="local-badge"><span class="status-dot" id="edgeStatusDot"></span><span id="edgeStatusLabel">Edge 未连接</span></span>
+        <button class="button secondary" id="edgeCaptureButton" type="button">
+          <span class="button-symbol" aria-hidden="true">◉</span>
+          <span class="button-label">读取 Edge</span>
+        </button>
+        <button class="button secondary" id="webDownloadButton" type="button">
+          <span class="button-symbol" aria-hidden="true">↓</span>
+          <span class="button-label">网页转 TXT</span>
+        </button>
+        <button class="button primary" id="openFileButton" type="button">
+          <span aria-hidden="true">＋</span>
+          打开 TXT
+        </button>
+        <div class="window-controls" id="windowControls" aria-label="窗口控制">
+          <button class="window-control" id="minimizeWindowButton" type="button" title="最小化" aria-label="最小化">−</button>
+          <button class="window-control" id="maximizeWindowButton" type="button" title="最大化或还原" aria-label="最大化或还原">□</button>
+          <button class="window-control close" id="closeWindowButton" type="button" title="关闭窗口" aria-label="关闭窗口">×</button>
+        </div>
+        <input id="fileInput" type="file" accept=".txt,text/plain" hidden />
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-mobile-head">
+          <span>书籍导航</span>
+          <button class="icon-button" id="closeSidebarButton" type="button" title="关闭导航" aria-label="关闭导航">×</button>
+        </div>
+
+        <section class="book-summary">
+          <div class="book-label">正在阅读</div>
+          <h1 id="bookTitle">夜航书简</h1>
+          <div class="book-stats">
+            <span id="chapterCount">4 章</span>
+            <span aria-hidden="true">·</span>
+            <span id="characterCount">0 字</span>
+            <span aria-hidden="true">·</span>
+            <span id="encodingLabel">示例</span>
+          </div>
+        </section>
+
+        <div class="section-tabs" role="tablist" aria-label="导航视图">
+          <button class="tab is-active" id="catalogTab" type="button" role="tab" aria-selected="true" aria-controls="catalogPanel">目录</button>
+          <button class="tab" id="searchTab" type="button" role="tab" aria-selected="false" aria-controls="searchPanel">搜索</button>
+        </div>
+
+        <section class="panel catalog-panel is-active" id="catalogPanel" role="tabpanel">
+          <div class="panel-heading">
+            <span>全部章节</span>
+            <span class="muted" id="catalogProgress">1 / 4</span>
+          </div>
+          <nav class="chapter-list" id="chapterList" aria-label="小说目录"></nav>
+        </section>
+
+        <section class="panel search-panel" id="searchPanel" role="tabpanel" hidden>
+          <label class="search-box" for="searchInput">
+            <span class="search-symbol" aria-hidden="true"></span>
+            <input id="searchInput" type="search" placeholder="搜索全书内容" autocomplete="off" />
+          </label>
+          <div class="search-status" id="searchStatus">输入关键词开始搜索</div>
+          <div class="search-results" id="searchResults"></div>
+        </section>
+      </aside>
+
+      <button class="sidebar-scrim" id="sidebarScrim" type="button" aria-label="关闭导航" tabindex="-1"></button>
+
+      <section class="reader-shell">
+        <div class="reader-toolbar">
+          <div class="reader-toolbar-left">
+            <button class="icon-button mobile-only" id="openSidebarButton" type="button" title="打开导航" aria-label="打开导航">☰</button>
+            <div class="current-location">
+              <span id="currentChapterNumber">第 1 章</span>
+              <strong id="currentChapterTitle">灯塔熄灭以前</strong>
+            </div>
+          </div>
+
+          <div class="reader-actions">
+            <button class="icon-button" id="previousButton" type="button" title="上一章" aria-label="上一章">←</button>
+            <button class="icon-button" id="nextButton" type="button" title="下一章" aria-label="下一章">→</button>
+            <span class="toolbar-divider" aria-hidden="true"></span>
+            <button class="icon-button text-icon" id="settingsButton" type="button" title="阅读设置" aria-label="阅读设置" aria-expanded="false">Aa</button>
+          </div>
+
+          <section class="settings-popover" id="settingsPopover" aria-label="阅读设置" hidden>
+            <div class="setting-row">
+              <span class="setting-name">字号</span>
+              <div class="stepper">
+                <button type="button" id="fontDecrease" aria-label="减小字号">−</button>
+                <output id="fontSizeOutput">18</output>
+                <button type="button" id="fontIncrease" aria-label="增大字号">＋</button>
+              </div>
+            </div>
+            <label class="setting-row range-row" for="lineHeightRange">
+              <span class="setting-name">行距</span>
+              <input id="lineHeightRange" type="range" min="1.6" max="2.4" step="0.1" value="1.8" />
+            </label>
+            <div class="setting-row">
+              <span class="setting-name">背景</span>
+              <div class="theme-swatches" aria-label="背景主题">
+                <button class="theme-swatch paper is-active" type="button" data-theme-value="paper" title="纸张" aria-label="纸张主题"></button>
+                <button class="theme-swatch white" type="button" data-theme-value="white" title="明亮" aria-label="明亮主题"></button>
+                <button class="theme-swatch night" type="button" data-theme-value="night" title="夜间" aria-label="夜间主题"></button>
+                <input class="color-input" id="backgroundColorInput" type="color" value="#f7f2e7" title="自定义背景颜色" aria-label="自定义背景颜色" />
+                <button class="sample-color-button" id="sampleColorButton" type="button" title="从屏幕取色" aria-label="从屏幕取色">取色</button>
+              </div>
+            </div>
+            <div class="setting-row">
+              <span class="setting-name">窗口</span>
+              <div class="window-mode-toggle" role="group" aria-label="窗口模式">
+                <button type="button" data-window-mode="windowed">有边框</button>
+                <button type="button" data-window-mode="frameless">无边框</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="chapter-progress" aria-hidden="true"><span id="chapterProgressBar"></span></div>
+
+        <div class="reader-viewport" id="readerViewport">
+          <article class="reader-content" id="readerContent" tabindex="-1"></article>
+          <footer class="chapter-footer">
+            <button class="chapter-nav-button" id="footerPreviousButton" type="button">
+              <span aria-hidden="true">←</span>
+              <span><small>上一章</small><strong id="previousChapterTitle">已经是开头</strong></span>
+            </button>
+            <button class="chapter-nav-button next" id="footerNextButton" type="button">
+              <span><small>下一章</small><strong id="nextChapterTitle">下一章标题</strong></span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </footer>
+        </div>
+
+        <div class="reader-statusbar">
+          <span id="readingProgress">全书 0%</span>
+          <span id="currentPosition">第 1 / 4 章</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="drop-overlay" id="dropOverlay" aria-hidden="true">
+      <div class="drop-message">
+        <span class="drop-icon">TXT</span>
+        <strong>松开以打开小说</strong>
+      </div>
+    </div>
+
+    <dialog class="download-dialog" id="downloadDialog" aria-labelledby="downloadDialogTitle">
+      <div class="dialog-header">
+        <div>
+          <span class="dialog-kicker">网页小说</span>
+          <h2 id="downloadDialogTitle">下载为 TXT</h2>
+        </div>
+        <button class="icon-button" id="closeDownloadDialog" type="button" title="关闭" aria-label="关闭">×</button>
+      </div>
+
+      <form class="download-form" id="downloadForm">
+        <div id="downloadFields">
+          <label class="form-field" for="novelUrl">
+            <span>目录页网址</span>
+            <input id="novelUrl" name="novelUrl" type="url" inputmode="url" placeholder="https://example.com/book/catalog" required />
+          </label>
+
+          <label class="form-field compact-field" for="maxChapters">
+            <span>最多下载</span>
+            <select id="maxChapters" name="maxChapters">
+              <option value="200">200 章</option>
+              <option value="500" selected>500 章</option>
+              <option value="1000">1000 章</option>
+              <option value="2000">2000 章</option>
+            </select>
+          </label>
+
+          <label class="rights-confirmation" for="rightsConfirmation">
+            <input id="rightsConfirmation" type="checkbox" required />
+            <span>我确认内容可公开访问，且我有权保存个人离线副本</span>
+          </label>
+          <p class="form-note">仅处理无需登录即可访问的页面，并遵守网站 robots.txt。</p>
+        </div>
+
+        <section class="download-progress-view" id="downloadProgressView" aria-live="polite" hidden>
+          <div class="progress-summary">
+            <strong id="downloadProgressTitle">正在读取目录页</strong>
+            <span id="downloadProgressCount">准备中</span>
+          </div>
+          <div class="download-progress-track" role="progressbar" aria-label="下载进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="downloadProgressBar"></span>
+          </div>
+          <p id="downloadProgressDetail">正在连接网站…</p>
+        </section>
+
+        <div class="dialog-actions">
+          <button class="button secondary" id="cancelDownloadButton" type="button">取消</button>
+          <button class="button primary" id="startDownloadButton" type="submit">开始下载</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

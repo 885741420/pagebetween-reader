@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页间 Edge 网页桥接隐私政策</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, -apple-system, "Microsoft YaHei", sans-serif; }
+    body { max-width: 760px; margin: 0 auto; padding: 32px 20px 56px; line-height: 1.7; }
+    h1 { line-height: 1.25; }
+    code { padding: 2px 5px; border-radius: 4px; background: #8882; }
+  </style>
+</head>
+<body>
+  <h1>页间 Edge 网页桥接隐私政策</h1>
+  <p>更新日期：2026-09-03</p>
+
+  <p>页间 Edge 网页桥接是页间小说阅读器的配套扩展。它只在用户主动使用阅读器的读取功能后，读取当前 Edge 标签页中已经显示的章节标题、正文、章节导航和目录链接。</p>
+
+  <h2>数据处理</h2>
+  <ul>
+    <li>网页内容只通过本机回环地址 <code>127.0.0.1:17321</code> 发送给用户自己运行的页间小说阅读器。</li>
+    <li>扩展不会把网页内容、浏览历史、身份信息或其他数据上传到开发者服务器。</li>
+    <li>为实现章节预取，扩展会在用户当前网站的浏览器登录状态下请求后两章；缓存保存在用户本机。</li>
+    <li>扩展不会绕过登录、付费墙、验证码、DRM 或其他访问限制。</li>
+  </ul>
+
+  <h2>权限用途</h2>
+  <p>网页访问权限用于从用户正在阅读的小说页面提取正文和章节链接。标签页权限用于定位当前阅读标签页，并在用户操作上一章、下一章或目录时切换页面。本机回环连接权限仅用于连接本地阅读器。</p>
+
+  <h2>数据删除</h2>
+  <p>卸载扩展会移除扩展自身。阅读器保存的章节缓存和阅读进度可以在阅读器设置中清除，或通过卸载阅读器并删除其应用数据来删除。</p>
+
+  <h2>联系</h2>
+  <p>隐私问题请联系：<strong>YOUR_SUPPORT_EMAIL</strong></p>
+</body>
+</html>
