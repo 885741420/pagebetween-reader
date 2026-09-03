@@ -35,7 +35,7 @@ store-demo\
 测试目录：https://你的用户名.github.io/仓库名/store-demo/
 ```
 
-发布前必须把 `privacy.html` 中的 `YOUR_SUPPORT_EMAIL` 替换为真实支持邮箱。测试目录是原创内容，不需要登录或付费。
+隐私页使用仓库 Issues 作为公开支持入口，不公开个人邮箱。测试目录是原创内容，不需要登录或付费。
 
 可以直接使用已生成的公开资料包：
 
@@ -62,7 +62,7 @@ release\页间小说阅读器-1.2.0-setup.exe
 - 名称：页间 Edge 网页桥接
 - 类别：生产力
 - 隐私政策：上一步的公开 HTTPS 隐私页
-- 支持页面：你的项目主页或下载页
+- 支持页面：`https://github.com/885741420/pagebetween-reader/issues`
 - 详细说明和权限理由：`edge-reader\STORE-SUBMISSION.md`
 - 审核备注：同一文件的“审核员测试步骤”
 - 商店 Logo：`edge-reader\store-assets\logo-300.png`
